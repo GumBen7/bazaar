@@ -7,19 +7,24 @@ import main.controller.operations.OperationFactory;
 import main.controller.operations.OperationType;
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+
 public class Controller {
     public void dataBaseVersion() {
         PostgreSQLDatabase.version();
     }
 
-    public void operate(String[] args) {
+    public void execute(String[] args) {
         try {
-            JSONObject input = (JSONObject) JSONWorker.readJson(args[1]);
-            OperationType type = OperationType.valueOf(args[0].toUpperCase());
+            final String opTypeArg = args[ArgSerial.OPER_TYPE.serial];
+            final String inputFileArg = args[ArgSerial.INPUT.serial];
+            final String outputFileArg = args[ArgSerial.OUTPUT.serial];
+            JSONObject input =(JSONObject) JSONWorker.readJson(inputFileArg);
+            OperationType type = OperationType.valueOf(opTypeArg.toUpperCase());
             OperationFactory factory = OperationFactory.factory(type);
             Operation operation = factory.getOperation();
             JSONObject result = operation.operate(input);
-            JSONWorker.writeJson(args[2], result);
+            JSONWorker.writeJson(outputFileArg, result);
         }
         catch (Exception e) {
             e.printStackTrace();
