@@ -10,16 +10,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JSONWorker {
-    public static Object readJson(String fileName) throws Exception {
+    public static IOObject readJson(String fileName) throws Exception {
         FileReader reader = new FileReader(fileName);
         JSONParser parser = new JSONParser();
-        Object json = parser.parse(reader);
-        IOObject object = toIOObject((JSONObject) json);
-        return json;
+        JSONObject object = (JSONObject) parser.parse(reader);
+        return toIOObject(object);
     }
 
-    public static void writeJson(String fileName, JSONObject obj) throws Exception {
-        Files.write(Paths.get(fileName), obj.toJSONString().getBytes());
+    public static void writeJson(String fileName, IOObject obj) throws Exception {
+        JSONObject jsonObject = new JSONObject(obj);
+        Files.write(Paths.get(fileName), jsonObject.toJSONString().getBytes());
     }
 
     private static IOObject toIOObject(JSONObject object) {
@@ -35,7 +35,7 @@ public class JSONWorker {
             } else if (value instanceof Long) {
                 newValue = new IONumber((Long) value);
             } else {
-                newValue = new IOString(String.valueOf(value));
+                newValue = new IOString("\"" + value + "\"");
             }
             ioObject.put(key, newValue);
         }
@@ -53,7 +53,7 @@ public class JSONWorker {
             } else if (value instanceof Long) {
                 newValue = new IONumber((Long) value);
             } else {
-                newValue = new IOString(String.valueOf(value));
+                newValue = new IOString("\"" + value + "\"");
             }
             ioArray.add(newValue);
         }

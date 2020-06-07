@@ -1,7 +1,7 @@
 package main.controller.operations;
 
-import org.json.simple.JSONObject;
+import main.controller.io.entities.IOObject;
 
 public interface Operation {
-    JSONObject operate(JSONObject input);
+    IOObject operate(IOObject input);
 }
