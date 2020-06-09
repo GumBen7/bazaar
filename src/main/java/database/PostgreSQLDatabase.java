@@ -18,4 +18,17 @@ public class PostgreSQLDatabase {
             ex.printStackTrace();
         }
     }
+
+    public static ResultSet execute(String query, String[] args) {
+        try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement pst = con.prepareStatement(query);
+            for (int i = 0; i < args.length; i++) {
+                pst.setString(i + 1, args[0]);
+            }
+            return pst.executeQuery();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

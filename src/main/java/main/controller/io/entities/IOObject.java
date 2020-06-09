@@ -12,7 +12,7 @@ public class IOObject extends LinkedHashMap<String, IOValue> implements Map<Stri
         Iterator<Entry<String, IOValue>> iter = this.entrySet().iterator();
         sb.append('{');
 
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             if (first) {
                 first = false;
             } else {

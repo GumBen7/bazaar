@@ -9,8 +9,8 @@ import main.controller.operations.searchOperation.criterias.minTimesCriteria.Min
 public abstract class CriteriaFactory {
     private static IOObject criteriaCommandObject;
 
-    public static CriteriaFactory factory(CriteriaType type, IOObject cr) {
-        criteriaCommandObject = cr;
+    public static CriteriaFactory factory(CriteriaType type, IOObject cco) {
+        criteriaCommandObject = cco;
         switch (type) {
             case LASTNAME:
                 return new LastNameCriteriaFactory();

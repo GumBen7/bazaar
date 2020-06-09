@@ -3,10 +3,11 @@ package main.controller;
 import database.PostgreSQLDatabase;
 import main.controller.io.JSONWorker;
 import main.controller.io.entities.IOObject;
-import main.controller.io.entities.IOString;
 import main.controller.operations.Operation;
 import main.controller.operations.OperationFactory;
 import main.controller.operations.OperationType;
+
+import java.sql.ResultSet;
 
 public class Controller {
     private static final String TYPE_STR = "type";
@@ -43,4 +44,7 @@ public class Controller {
         return factory.getOperation();
     }
 
+    public static ResultSet executeQuery(String query, String[] args) {
+        return PostgreSQLDatabase.execute(query, args);
+    }
 }

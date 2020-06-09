@@ -11,7 +11,7 @@ public class IOArray extends ArrayList<IOValue> implements List<IOValue>, IOValu
         StringBuffer sb = new StringBuffer();
         Iterator<IOValue> iter = this.iterator();
         sb.append('[');
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             if (first) {
                 first = false;
             } else {
