@@ -8,7 +8,11 @@
     },
     {
       "productName": "Минеральная вода",
-      "minTimes": 5
+      "minTimes": 6
+    },
+    {
+      "productName": "Хлеб",
+      "minTimes": 11
     },
     {
       "minExpenses": 112,

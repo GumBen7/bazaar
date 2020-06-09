@@ -17,7 +17,7 @@ import java.util.List;
 public class SearchOperation implements Operation {
     public static final String RESULTS_STR = "results";
     private static final String CRITERIAS_STR = "criterias";
-    private static final String PRODUCT_NAME_STR = "productName";
+    public static final String PRODUCT_NAME_STR = "productName";
     private static final String MIN_EXPENSES_STR = "minExpenses";
     private static final String MAX_EXPENSES_STR = "maxExpenses";
 
@@ -25,7 +25,6 @@ public class SearchOperation implements Operation {
     public IOObject operate(IOObject input) {
         IOObject results = new IOObject();
         AggregCriteria criterias = getCriterias(input);
-
         results.put(RESULTS_STR, criterias.apply());
         return results;
     }
@@ -49,9 +48,9 @@ public class SearchOperation implements Operation {
         if (criteriaCommandObject.size() == 1) {
             criteriaName = criteriaCommandObject.keySet().iterator().next();
         } else if (criteriaCommandObject.size() == 2) {
-            if (criteriaCommandObject.containsKey(MinTimesCriteria.NAME)
+            if (criteriaCommandObject.containsKey(MinTimesCriteria.CRITERIA_NAME)
                     && criteriaCommandObject.containsKey(PRODUCT_NAME_STR)) {
-                criteriaName = MinTimesCriteria.NAME;
+                criteriaName = MinTimesCriteria.CRITERIA_NAME;
             } else if (criteriaCommandObject.containsKey(MIN_EXPENSES_STR)
                     && criteriaCommandObject.containsKey(MAX_EXPENSES_STR)) {
                 criteriaName = ExpensesCriteria.NAME;
