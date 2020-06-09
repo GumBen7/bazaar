@@ -28,11 +28,11 @@ public class Controller {
 
     private IOObject getResultObject(String opTypeArg, IOObject input) {
         IOObject output = new IOObject();
-        output.put("type", new IOString(opTypeArg));
+        output.put("type", opTypeArg);
         Operation operation = getOperationByCommand(opTypeArg);
         IOObject opResult = operation.operate(input);
-        //for (opResult.)
-        return opResult;
+        output.putAll(opResult);
+        return output;
     }
 
     private Operation getOperationByCommand(String opTypeArg) {

@@ -1,14 +1,14 @@
-package main.controller.operations.searchOperation.criterias.lastNameCriteria;
+package main.controller.operations.searchOperation.criterias.badCustomerCriteria;
 
 import main.controller.io.entities.IOArray;
 import main.controller.io.entities.IOObject;
 import main.controller.io.entities.IOValue;
 import main.controller.operations.searchOperation.criterias.Criteria;
 
-public class LastNameCriteria extends Criteria {
-    public final static String NAME = "lastName";
+public class BadCustomersCriteria extends Criteria {
+    public static final String NAME = "badCustomers";
 
-    public LastNameCriteria(IOObject object) {
+    public BadCustomersCriteria(IOObject object) {
         super(object);
     }
 
