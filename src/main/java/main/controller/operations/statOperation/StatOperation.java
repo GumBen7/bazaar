@@ -6,6 +6,7 @@ import main.controller.operations.Operation;
 public class StatOperation implements Operation {
     @Override
     public IOObject operate(IOObject input) {
+        IOObject result = new IOObject();
         return input;
     }
 }

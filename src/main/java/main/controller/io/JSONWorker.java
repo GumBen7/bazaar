@@ -18,8 +18,7 @@ public class JSONWorker {
     }
 
     public static void writeJson(String fileName, IOObject obj) throws Exception {
-        JSONObject jsonObject = new JSONObject(obj);
-        Files.write(Paths.get(fileName), jsonObject.toJSONString().getBytes());
+        Files.write(Paths.get(fileName), obj.toString().getBytes());
     }
 
     private static IOObject toIOObject(JSONObject object) {
@@ -32,10 +31,10 @@ public class JSONWorker {
                 newValue = toIOArray((JSONArray) value);
             } else if (value instanceof JSONObject) {
                 newValue = toIOObject((JSONObject) value);
-            } else if (value instanceof Long) {
-                newValue = new IONumber((Long) value);
+            } else if (value instanceof Number) {
+                newValue = new IONumber((Number) value);
             } else {
-                newValue = new IOString("\"" + value + "\"");
+                newValue = new IOString(String.valueOf(value));
             }
             ioObject.put(key, newValue);
         }
@@ -50,8 +49,8 @@ public class JSONWorker {
                 newValue = toIOArray((JSONArray) value);
             } else if (value instanceof JSONObject) {
                 newValue = toIOObject((JSONObject) value);
-            } else if (value instanceof Long) {
-                newValue = new IONumber((Long) value);
+            } else if (value instanceof Number) {
+                newValue = new IONumber((Number) value);
             } else {
                 newValue = new IOString("\"" + value + "\"");
             }
