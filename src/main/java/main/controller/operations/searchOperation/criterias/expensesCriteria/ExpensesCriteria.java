@@ -6,7 +6,7 @@ import main.controller.io.entities.IOValue;
 import main.controller.operations.searchOperation.criterias.Criteria;
 
 public class ExpensesCriteria extends Criteria {
-    public static final String NAME = "minExpenses";
+    public static final String NAME = "expenses";
 
     public ExpensesCriteria(IOObject object) {
         super(object);

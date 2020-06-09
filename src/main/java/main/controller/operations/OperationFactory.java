@@ -4,7 +4,7 @@ import main.controller.operations.searchOperation.SearchOperationFactory;
 import main.controller.operations.statOperation.StatOperationFactory;
 
 public abstract class OperationFactory {
-    public static OperationFactory factory(OperationType type) throws IllegalArgumentException{
+    public static OperationFactory factory(OperationType type) {
         switch (type) {
             case SEARCH:
                 return new SearchOperationFactory();

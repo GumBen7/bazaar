@@ -9,6 +9,8 @@ import main.controller.operations.OperationFactory;
 import main.controller.operations.OperationType;
 
 public class Controller {
+    private static final String TYPE_STR = "type";
+
     public void dataBaseVersion() {
         PostgreSQLDatabase.version();
     }
@@ -28,7 +30,7 @@ public class Controller {
 
     private IOObject getResultObject(String opTypeArg, IOObject input) {
         IOObject output = new IOObject();
-        output.put("type", opTypeArg);
+        output.put(TYPE_STR, opTypeArg);
         Operation operation = getOperationByCommand(opTypeArg);
         IOObject opResult = operation.operate(input);
         output.putAll(opResult);
