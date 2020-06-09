@@ -4,11 +4,15 @@ public class IOString implements IOValue {
     private final String value;
 
     public IOString(String v) {
-        value = '\"' + v + '\"';
+        value = v;
     }
 
     @Override
     public String toString() {
+        return '\"' + value + '\"';
+    }
+
+    public String getValue() {
         return value;
     }
 }

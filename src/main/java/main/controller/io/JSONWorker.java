@@ -52,7 +52,7 @@ public class JSONWorker {
             } else if (value instanceof Number) {
                 newValue = new IONumber((Number) value);
             } else {
-                newValue = new IOString("\"" + value + "\"");
+                newValue = new IOString(String.valueOf(value));
             }
             ioArray.add(newValue);
         }
