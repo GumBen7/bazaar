@@ -14,21 +14,21 @@ public class IONumber extends Number implements IOValue {
 
     @Override
     public int intValue() {
-        return (Integer) value;
+        return value.intValue();
     }
 
     @Override
     public long longValue() {
-        return (Long) value;
+        return value.longValue();
     }
 
     @Override
     public float floatValue() {
-        return (Float) value;
+        return value.floatValue();
     }
 
     @Override
     public double doubleValue() {
-        return (Double) value;
+        return value.doubleValue();
     }
 }

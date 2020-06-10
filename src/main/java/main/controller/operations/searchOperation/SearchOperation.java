@@ -16,10 +16,10 @@ import java.util.List;
 
 public class SearchOperation implements Operation {
     public static final String RESULTS_STR = "results";
-    private static final String CRITERIAS_STR = "criterias";
     public static final String PRODUCT_NAME_STR = "productName";
-    private static final String MIN_EXPENSES_STR = "minExpenses";
-    private static final String MAX_EXPENSES_STR = "maxExpenses";
+    public static final String MIN_EXPENSES_STR = "minExpenses";
+    public static final String MAX_EXPENSES_STR = "maxExpenses";
+    private static final String CRITERIAS_STR = "criterias";
 
     @Override
     public IOObject operate(IOObject input) {
@@ -53,7 +53,7 @@ public class SearchOperation implements Operation {
                 criteriaName = MinTimesCriteria.CRITERIA_NAME;
             } else if (criteriaCommandObject.containsKey(MIN_EXPENSES_STR)
                     && criteriaCommandObject.containsKey(MAX_EXPENSES_STR)) {
-                criteriaName = ExpensesCriteria.NAME;
+                criteriaName = ExpensesCriteria.CRITERIA_NAME;
             }
         }
         CriteriaFactory factory = CriteriaFactory.factory(CriteriaType.valueOf(criteriaName.toUpperCase()), criteriaCommandObject);

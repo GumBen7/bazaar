@@ -51,4 +51,8 @@ public class Controller {
     public static ResultSet executeQuery(String query, String arg1, Long arg2) {
         return PostgreSQLDatabase.execute(query, arg1, arg2);
     }
+
+    public static ResultSet executeQuery(String query, Double arg1, Double arg2) {
+        return PostgreSQLDatabase.execute(query, arg1, arg2);
+    }
 }

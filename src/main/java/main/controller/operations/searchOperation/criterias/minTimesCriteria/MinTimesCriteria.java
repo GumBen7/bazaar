@@ -19,12 +19,12 @@ public class MinTimesCriteria extends Criteria {
                     "customers " +
             "LEFT JOIN purchases " +
                     "ON customers.id = purchases.customer_id " +
-            "JOIN products " +
+            "LEFT JOIN products " +
                     "ON purchases.product_id = products.id and products.name = ? " +
             "GROUP BY " +
                     "customers.id " +
             "HAVING " +
-                    "count(purchases) >= ?;";
+                    "count(products) >= ?;";
 
     public MinTimesCriteria(IOObject object) {
         super(object);

@@ -12,7 +12,14 @@ import java.sql.SQLException;
 
 public class LastNameCriteria extends Criteria {
     public final static String CRITERIA_NAME = LAST_NAME_STR;
-    private static final String QUERY = "SELECT surname, name FROM customers WHERE surname = ?";
+    private static final String QUERY =
+            "SELECT " +
+                    "surname, " +
+                    "name " +
+            "FROM " +
+                    "customers " +
+            "WHERE " +
+                    "surname = ?";
 
     public LastNameCriteria(IOObject object) {
         super(object);

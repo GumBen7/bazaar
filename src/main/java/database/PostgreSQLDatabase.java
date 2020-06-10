@@ -43,4 +43,16 @@ public class PostgreSQLDatabase {
         }
         return null;
     }
+
+    public static ResultSet execute(String query, Double arg1, Double arg2) {
+        try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setDouble(1, arg1);
+            pst.setDouble(2, arg2);
+            return pst.executeQuery();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
