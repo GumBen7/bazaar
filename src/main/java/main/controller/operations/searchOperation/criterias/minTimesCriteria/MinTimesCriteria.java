@@ -54,7 +54,6 @@ public class MinTimesCriteria extends Criteria {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
             }
         }
         return array;

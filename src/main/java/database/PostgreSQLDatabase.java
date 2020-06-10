@@ -1,6 +1,9 @@
 package database;
 
+import java.util.Date;
+
 import java.sql.*;
+import java.util.List;
 
 public class PostgreSQLDatabase {
     private final static String URL = "jdbc:postgresql://localhost:5432/bazaar_db";
@@ -23,7 +26,7 @@ public class PostgreSQLDatabase {
         try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement pst = con.prepareStatement(query);
             for (int i = 0; i < args.length; i++) {
-                pst.setString(i + 1, args[0]);
+                pst.setString(i + 1, args[i]);
             }
             return pst.executeQuery();
         } catch (SQLException ex) {
