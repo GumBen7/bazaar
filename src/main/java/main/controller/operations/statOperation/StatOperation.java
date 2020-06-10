@@ -6,8 +6,12 @@ import main.controller.io.entities.IOObject;
 import main.controller.io.entities.IOString;
 import main.controller.operations.Operation;
 
+import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Vector;
 
 public class StatOperation implements Operation {
     private static final String START_DATE_STR = "startDate";
@@ -57,6 +61,7 @@ public class StatOperation implements Operation {
             "ORDER BY id;";
     private String startDate = null;
     private String endDate = null;
+    private Vector<Double> customersExpenses;
 
     @Override
     public IOObject operate(IOObject input) {
@@ -66,9 +71,10 @@ public class StatOperation implements Operation {
             Long totalDays = getTotalDays();
             if (totalDays != null) {
                 result.put(TOTAL_DAYS_STR, totalDays);
+                customersExpenses = new Vector<>();
                 result.put(CUSTOMERS_STR, getCustomers());
-                result.put(TOTAL_EXPENSES_STR, 0);
-                result.put(AVG_EXPENSES_STR, 0);
+                result.put(TOTAL_EXPENSES_STR, sumExpenses());
+                result.put(AVG_EXPENSES_STR, avgExpenses());
             }
         }
         return result;
@@ -108,6 +114,7 @@ public class StatOperation implements Operation {
                 if (id != rs.getInt(1)) {
                     if (customer != null) {
                         customer.put(TOTAL_EXPENSES_STR, totalExpenses);
+                        customersExpenses.add(totalExpenses);
                         array.add(customer);
                     }
                     id = rs.getInt(1);
@@ -131,11 +138,32 @@ public class StatOperation implements Operation {
             }
             if (customer != null) {
                 customer.put(TOTAL_EXPENSES_STR, totalExpenses);
+                customersExpenses.add(totalExpenses);
                 array.add(customer);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return array;
+    }
+
+    private double sumExpenses() {
+        double sum = 0.;
+        for (Double d : customersExpenses) {
+            sum += d;
+        }
+        return sum;
+    }
+
+    private double avgExpenses() {
+        if (customersExpenses.size() == 0) {
+            return 0.;
+        }
+        DecimalFormatSymbols dFS = new DecimalFormatSymbols();
+        dFS.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("#.##", dFS);
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        String s = df.format(sumExpenses() / customersExpenses.size());
+        return Double.parseDouble(s);
     }
 }
