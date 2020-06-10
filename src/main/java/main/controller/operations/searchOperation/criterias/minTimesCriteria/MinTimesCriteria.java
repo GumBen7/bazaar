@@ -20,7 +20,8 @@ public class MinTimesCriteria extends Criteria {
             "LEFT JOIN purchases " +
                     "ON customers.id = purchases.customer_id " +
             "LEFT JOIN products " +
-                    "ON purchases.product_id = products.id and products.name = ? " +
+                    "ON purchases.product_id = products.id " +
+                    "AND products.name = ? " +
             "GROUP BY " +
                     "customers.id " +
             "HAVING " +
