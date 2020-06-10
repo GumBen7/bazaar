@@ -32,7 +32,7 @@ public class PostgreSQLDatabase {
         return null;
     }
 
-    public static ResultSet execute(String query, String arg1, Long arg2) {
+    public static ResultSet execute(String query, String arg1, long arg2) {
         try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, arg1);
@@ -44,11 +44,22 @@ public class PostgreSQLDatabase {
         return null;
     }
 
-    public static ResultSet execute(String query, Double arg1, Double arg2) {
+    public static ResultSet execute(String query, double arg1, double arg2) {
         try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement pst = con.prepareStatement(query);
             pst.setDouble(1, arg1);
             pst.setDouble(2, arg2);
+            return pst.executeQuery();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ResultSet execute(String query, long arg) {
+        try (Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setLong(1, arg);
             return pst.executeQuery();
         } catch (SQLException ex) {
             ex.printStackTrace();
